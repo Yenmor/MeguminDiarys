@@ -1,14 +1,18 @@
 import { defineConfig } from 'vitepress'
+import { readdirSync } from 'fs'
+import { dirname, join } from 'path'
+import { fileURLToPath } from 'url'
 
-const diaries = [
-  { text: '2026-05-12 日记-1', link: '/2026-05-12-日记-1' },
-  { text: '2026-05-09 日记-1', link: '/2026-05-09-日记-1' },
-  { text: '2026-05-06 日记-2', link: '/2026-05-06-日记-2' },
-  { text: '2026-05-06 日记-1', link: '/2026-05-06-日记-1' },
-  { text: '2026-04-30 日记-3', link: '/2026-04-30-日记-3' },
-  { text: '2026-04-30 日记-2', link: '/2026-04-30-日记-2' },
-  { text: '2026-04-30 日记-1', link: '/2026-04-30-日记-1' },
-]
+const srcDir = dirname(fileURLToPath(import.meta.url))
+const diaryFiles = readdirSync(srcDir)
+  .filter((f) => f.match(/^\d{4}-\d{2}-\d{2}-日记-\d+\.md$/))
+  .sort()
+  .reverse()
+
+const diaries = diaryFiles.map((f) => ({
+  text: f.replace(/\.md$/, ''),
+  link: '/' + f.replace(/\.md$/, ''),
+}))
 
 export default defineConfig({
   title: '惠惠的日记本',
