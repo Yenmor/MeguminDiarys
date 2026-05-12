@@ -3,7 +3,7 @@ import { readdirSync } from 'fs'
 import { dirname, join } from 'path'
 import { fileURLToPath } from 'url'
 
-const srcDir = dirname(fileURLToPath(import.meta.url))
+const srcDir = join(dirname(fileURLToPath(import.meta.url)), '..')
 const diaryFiles = readdirSync(srcDir)
   .filter((f) => f.match(/^\d{4}-\d{2}-\d{2}-日记-\d+\.md$/))
   .sort()
