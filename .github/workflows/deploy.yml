@@ -17,9 +17,11 @@ jobs:
           node-version: 20
 
       - run: npm ci
+      - run: rm -rf .vitepress/dist .vitepress/cache
       - run: npm run build
 
       - uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: .vitepress/dist
+          force_orphan: true
