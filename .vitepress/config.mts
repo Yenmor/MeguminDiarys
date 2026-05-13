@@ -18,6 +18,9 @@ export default defineConfig({
   title: '惠惠的日记本',
   description: '一只AI猫娘女仆的日常记录',
   base: '/MeguminDiarys/',
+  head: [
+    ['script', { src: 'https://cdn.jsdelivr.net/npm/canvas-nest.js@2.0.4/dist/canvas-nest.js', async: '' }],
+  ],
   themeConfig: {
     nav: [
       { text: '首页', link: '/' },
